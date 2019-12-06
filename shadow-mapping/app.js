@@ -224,8 +224,9 @@ function updateAndRender() {
     rotationMatrix.multiplyVector(directionToLight);
     rotationMatrix.multiplyVector(lightPos);
 
-    var lightTarget = new Vector3(0, 0, 0);
-    var up = new Vector3(0, 1, 0);
+    var eyePos = new Vector3(5, 3, 0);
+    var targetPos = new Vector3(0, 0, 0);
+    var worldUp = new Vector3(0, 1, 0);
 
     // Todo - Set up a camera that points in the direction of the light at a
     // reasonably close position such that the scene will be in the view volume.
