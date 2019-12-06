@@ -14,7 +14,7 @@ var groundTexture = null;
 
 var projectionMatrix = new Matrix4();
 var shadowProjectionMatrix = new Matrix4();
-var eyePos = new Vector3(5, 3, 0);
+var lightPos = new Vector3(5, 3, 0);
 var directionToLight = lightPos.clone().normalize();
 
 var depthWriteProgram;
@@ -224,6 +224,7 @@ function updateAndRender() {
     rotationMatrix.multiplyVector(directionToLight);
     rotationMatrix.multiplyVector(lightPos);
 
+    var eyePos = lightPos;
     var targetPos = new Vector3(0, 0, 0);
     var worldUp = new Vector3(0, 1, 0);
 
