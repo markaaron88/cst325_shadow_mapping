@@ -126,7 +126,32 @@ var Matrix4 = function(x, y, z) {
 
 	// -------------------------------------------------------------------------
 	this.setOrthographic = function(left, right, top, bottom, near, far) {
-		// todo set this matrix equal to an orthographic projection
+		var te = this.elements;
+
+		// row 1
+		te[0] = (2 / (right - left));
+		te[1] = 0;
+		te[2] = 0;
+		te[3] = -((right + left) / (right - left));
+
+		// row 2
+		te[4] = 0;
+		te[5] = (2 / (top - bottom));
+		te[6] = 0;
+		te[7] = -((top + bottom) / (top - bottom));
+
+		// row 3
+		te[8] = 0;
+		te[9] = 0;
+		te[10] = (-2 / (far - near));
+		te[11] = -((far + near) / (far - near));
+
+		// row 4
+		te[12] = 0;
+		te[13] = 0;
+		te[14] = 0;
+		te[15] = 1;
+
 		return this;
 	}
 
