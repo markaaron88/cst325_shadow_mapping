@@ -31,7 +31,7 @@ void main(void) {
     vec4 lightSpaceNDC = uLightVPMatrix * vec4(vWorldPosition, 1.0);
 
     // transform the clip space position into NDC (will already be in NDC for orthographic projection but we do it just in case)
-    lightSpaceNDC.x = lightSpaceNDC.x / lightSpaceNDC.w;
+  lightSpaceNDC.x = lightSpaceNDC.x / lightSpaceNDC.w;
 	lightSpaceNDC.y = lightSpaceNDC.y / lightSpaceNDC.w;
 	lightSpaceNDC.z = lightSpaceNDC.z / lightSpaceNDC.w;
 	lightSpaceNDC.w = lightSpaceNDC.w / lightSpaceNDC.w;
@@ -50,13 +50,13 @@ void main(void) {
     vec4 shadowColor = texture2D(uShadowTexture,lightSpaceUV);
 
     // todo #9
-     gl_FragColor = vec4(lightDepth, lightDepth,lightDepth,1.0);
+     //gl_FragColor = vec4(lightDepth, lightDepth,lightDepth,1.0);
     //gl_FragColor = vec4(lightSpaceUV.x, lightSpaceUV.y, 0.0, 1.0); // remove this when you are ready to add shadows
-    //if (/* in shadow*/) {
-    //   gl_FragColor = vec4(ambient, 1.0);
-    //} else {
-    //    gl_FragColor = vec4(finalColor, 1.0);
-    //}
+    if ( lightDepth > shadowColor.z ) {
+       gl_FragColor = vec4(ambient, 1.0);
+    } else {
+        gl_FragColor = vec4(finalColor, 1.0);
+    }
 }
 
 
