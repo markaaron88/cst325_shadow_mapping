@@ -40,7 +40,7 @@ void main(void) {
     vec2 lightSpaceUV = vec2((lightSpaceNDC.x + lightSpaceNDC.w) / 2.0, (lightSpaceNDC.y + lightSpaceNDC.w) / 2.0);
 
     // todo #8 scale and bias the light-space NDC z coordinate from [-1, 1] to [0, 1]
-    //float lightDepth = ?
+    float lightDepth = lightSpaceNDC.z / 2.0 + 0.5;
 
     // use this as part of todo #10
     float bias = 0.004;
@@ -50,7 +50,7 @@ void main(void) {
     vec4 shadowColor = texture2D(uShadowTexture,lightSpaceUV);
 
     // todo #9
-     gl_FragColor = vec4(shadowColor);
+     gl_FragColor = vec4(lightDepth, lightDepth,lightDepth,1.0);
     //gl_FragColor = vec4(lightSpaceUV.x, lightSpaceUV.y, 0.0, 1.0); // remove this when you are ready to add shadows
     //if (/* in shadow*/) {
     //   gl_FragColor = vec4(ambient, 1.0);
