@@ -52,7 +52,7 @@ void main(void) {
     // todo #9
      //gl_FragColor = vec4(lightDepth, lightDepth,lightDepth,1.0);
     //gl_FragColor = vec4(lightSpaceUV.x, lightSpaceUV.y, 0.0, 1.0); // remove this when you are ready to add shadows
-    if ( lightDepth > shadowColor.z ) {
+    if ( lightDepth > shadowColor.z + bias ) {
        gl_FragColor = vec4(ambient, 1.0);
     } else {
         gl_FragColor = vec4(finalColor, 1.0);
